@@ -28,7 +28,7 @@ yshift = fftshift(y);
 plot(fshift,abs(yshift))
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
-y1 =lowpass(y_c,0.00001,Fs);
+y1 =lowpass(y_c,0.0001,Fs);
 figure(5)
 y=fft(y1);
 n = length(y);
@@ -40,11 +40,17 @@ ylabel('Magnitude')
 figure(6)
 clf
 plot(y1)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%  Put your decoder code here
-%%
-%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+title("y1")
+
+samples = linspace(50, 3950, 40);
+x_d = zeros(1, length(samples));
+for i = 1:length(samples)
+    if (y1(samples(1, i)) > 0)
+        x_d(i) = 1;
+    else
+        x_d(i) = 0;
+    end
+end
 
 
 % convert to a string assuming that x_d is a vector of 1s and 0s
