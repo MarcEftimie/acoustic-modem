@@ -28,16 +28,18 @@ yshift = fftshift(y);
 plot(fshift,abs(yshift))
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
-y = 
+y1 =lowpass(y_c,0.00001,Fs);
 figure(5)
-y=fft(y_c);
-n = length(y_c);
+y=fft(y1);
+n = length(y);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
-%plot(y)
+figure(6)
+clf
+plot(y1)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  Put your decoder code here
 %%
