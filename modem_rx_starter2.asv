@@ -17,6 +17,7 @@ n = length(y_t);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
+title('Orignal Signal')
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 y_c=y_t.*cos(2*pi*f_c/Fs*[0:length(y_t)-1]');
@@ -26,6 +27,7 @@ n = length(y_c);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
+title('Cosine Multi')
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 y1 =lowpass(y_c,0.0001,Fs);
@@ -42,6 +44,7 @@ clf
 plot(y1)
 title("y1")
 
+<<<<<<< HEAD
 
 samples = [50:100:1000050];
 x_d = [];
@@ -50,13 +53,23 @@ for i = 1:length(samples)
     if (y1(samples(1, i)) < 0.005) && (y1(samples(1, i)) > -0.005)
         break;
     elseif (y1(samples(1, i)) > 0)
+=======
+samples = [50:100:98350];
+x_d = zeros(1, length(samples));
+x_d_count = 1;
+for i = 1:length(samples)
+    if (y1(samples(1, i)) > 0)
+>>>>>>> ce479261807fbb549916b6e51115f0795593cbec
         x_d(i) = 1;
     else
         x_d(i) = 0;
     end
 end
+<<<<<<< HEAD
 x_d = x_d(1:end-1)
 length(x_d)
+=======
+>>>>>>> ce479261807fbb549916b6e51115f0795593cbec
 
 % convert to a string assuming that x_d is a vector of 1s and 0s
 % representing the decoded bits
