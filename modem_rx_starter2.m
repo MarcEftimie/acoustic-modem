@@ -17,6 +17,7 @@ n = length(y_t);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
+title('Orignal Signal')
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 y_c=y_t.*cos(2*pi*f_c/Fs*[0:length(y_t)-1]');
@@ -26,6 +27,7 @@ n = length(y_c);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
+title('Cosine Multiplication in Time Domain')
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 y1 =lowpass(y_c,0.0001,Fs);
@@ -35,12 +37,15 @@ n = length(y);
 fshift = (-n/2:n/2-1)*(Fs/n);
 yshift = fftshift(y);
 plot(fshift,abs(yshift))
+title('Lowpass Filter Applied')
 xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 figure(6)
 clf
-plot(y1)
-title("y1")
+plot((0:length(y1)-1)/Fs, y1)
+title("Filtered Signal Time Domain")
+xlabel('Time (s)')
+ylabel('Magnitude')
 
 samples = [50:100:98350];
 x_d = zeros(1, length(samples));
@@ -52,7 +57,6 @@ for i = 1:length(samples)
         x_d(i) = 0;
     end
 end
-
 % convert to a string assuming that x_d is a vector of 1s and 0s
 % representing the decoded bits
 BitsToString(x_d)
