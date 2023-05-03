@@ -1,5 +1,5 @@
 
-load short_modem_rx.mat
+load long_modem_rx.mat
 
 % The received signal includes a bunch of samples from before the
 % transmission started so we need discard these samples that occurred before
@@ -42,8 +42,9 @@ clf
 plot(y1)
 title("y1")
 
-samples = linspace(50, 3950, 40);
+samples = [50:100:98350];
 x_d = zeros(1, length(samples));
+x_d_count = 1;
 for i = 1:length(samples)
     if (y1(samples(1, i)) > 0)
         x_d(i) = 1;
@@ -51,7 +52,6 @@ for i = 1:length(samples)
         x_d(i) = 0;
     end
 end
-
 
 % convert to a string assuming that x_d is a vector of 1s and 0s
 % representing the decoded bits
